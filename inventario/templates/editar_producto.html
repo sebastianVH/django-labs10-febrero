@@ -21,7 +21,16 @@ Editar mi producto
                 id="precio">
         </div>
         <div class="mb-3">
+            <label for="stock" class="form-label">Stock</label>
             <input name="stock" value="{{producto.stock_producto}}" type="number" class="form-control" id="stock">
+        </div>
+        <div class="mb-3">
+            <label for="categoria" class="form-label">Categoria</label>
+            <select name="categoria" class="form-select" aria-label="Default select example">
+                {% for categoria in categorias %}
+                <option {% if categoria.id == producto.categoria_fk.id %} selected {% endif %} value="{{categoria.id}}">{{categoria}}</option>
+                {% endfor %}
+            </select>
         </div>
         <a class="btn btn-danger" href="{% url 'listado' %}">Cancelar</a>
         <button type="submit" class="btn btn-success">Guardar</button>

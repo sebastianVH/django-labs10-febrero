@@ -16,6 +16,18 @@
 </head>
 
 <body>
+    <div class="container text-center">
+        <nav class="navbar">
+            <ul class="nav navbar">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listado_productos' %}">Listado de Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listado_clientes' %}">Listado de Clientes</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
     {% block contenido %}
     {% endblock contenido %}
 </body>

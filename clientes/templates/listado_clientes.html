@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block titulo %}
+    Listado de mis Clientes
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="container text-center">
+    <h1>Lista de Clientes</h1>
+<table class="table table-bordered table-hover text-center">
+    <thead class="table-dark">
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+        <th>Acciones</th>
+    </thead>
+    <tbody>
+        {% for cliente in clientes %}
+        <tr>
+            <td>{{cliente.nombre}}</td>
+            <td>{{cliente.apellido}}</td>
+            <td>{{cliente.email}}</td>
+            <td>
+                <a style="text-decoration: none;"  href="">
+                    <button class="btn btn-warning">Editar</button>
+                </a>
+                <a style="text-decoration: none;"  href="">
+                    <button class="btn btn-danger">Eliminar</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock contenido %}

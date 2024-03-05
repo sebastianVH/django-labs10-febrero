@@ -20,7 +20,8 @@
             <th>Nombre</th>
             <th>Precio</th>
             <th>Stock</th>
-            <th>Creado: </th>
+            <th>Categoria</th>
+            <th>Creado</th>
             <th>Acciones</th>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@
                 <td>{{producto.nombre_producto}}</td>
                 <td>{{producto.precio_producto}}</td>
                 <td>{{producto.stock_producto}}</td>
+                <td>{{producto.categoria_fk}}</td>
                 <td>{{producto.fecha_creacion}}</td>
                 <td>
                     <a style="text-decoration: none;"  href="{% url 'editar' producto.id %}">
@@ -77,6 +79,15 @@
                         <label for="stock" class="form-label">Stock</label>
                         <input name="stock" type="number" class="form-control" id="stock">
                     </div>
+                    <div class="mb-3">
+                        <label for="categoria" class="form-label">Categoria</label>
+                        <select name="categoria" class="form-select" aria-label="Default select example">
+                            {% for categoria in categorias %}
+                            <option value="{{categoria.id}}">{{categoria}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-success" data-bs-target="#categoriaModal" data-bs-toggle="modal">Crear categoria</button>
             </div>
             <div class="modal-footer">
                 <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
@@ -86,4 +97,28 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="categoriaModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Crear Categoria</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form action="{% url 'crear_categoria' %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nombre_categoria" class="form-label">Nombre Categoria</label>
+                <input name="nombre_categoria" type="text" class="form-control" id="nombre">
+            </div>
+        </div>
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
 {% endblock contenido %}
